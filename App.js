@@ -13,7 +13,7 @@ const [goalsArray,goalsEmptyArray] = useState([]);
   }
 
   const onButtonTouch = () => {
-     goalsEmptyArray(existingGoal =>  [...existingGoal, { key : Math.random, value : goalsItems  }] );
+     goalsEmptyArray(existingGoal =>  [...existingGoal, { key : Math.random.toString, value : goalsItems  }] );
     };
   
   
@@ -27,8 +27,8 @@ const [goalsArray,goalsEmptyArray] = useState([]);
 
           <FlatList 
                    style = {styles.listItem} 
-                   keyExtractor = { (item,index) => item.key} 
                    data = {goalsArray} 
+                   keyExtractor = { (item,index) => item.key} 
                    renderItem={itemIterator => (
                       <View>
                         <Text>{itemIterator.item.value}</Text>
