@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View,TextInput,Button,StyleSheet,FlatList } from 'react-native';
-
+import GoalList from './components/GoalList';
+ 
 
 const App = () => {
  
@@ -13,7 +14,8 @@ const [goalsArray,goalsEmptyArray] = useState([]);
   }
 
   const onButtonTouch = () => {
-     goalsEmptyArray(existingGoal =>  [...existingGoal, { id : Math.random().toString()  , value : goalsItems  }] );
+     goalsEmptyArray(existingGoal =>  [...existingGoal, { id : Math.random().toString()  , value : goalsItems  }
+    ] );
     };
   
   
@@ -30,9 +32,7 @@ const [goalsArray,goalsEmptyArray] = useState([]);
                    data = {goalsArray} 
                    keyExtractor = { (item,index) => item.id} 
                    renderItem={itemIterator => (
-                      <View>
-                        <Text>{itemIterator.item.value}</Text>
-                      </View>  
+                     <GoalList title = {itemIterator.item.value}/>
           )} />
         
        </View>
