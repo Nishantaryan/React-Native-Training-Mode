@@ -1,21 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View,TextInput,Button,StyleSheet } from 'react-native';
 
-export default function App() {
+const App = () => {
+  const [setGoal,getGoal] = useState('');
+  const userInput = () => {
+      getGoal(text); 
+  }
+  const printOnConsole = ""  ;
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+       <View style = {styles.container} >
+           <View>
+               <TextInput onChangeText = {userInput} style = {styles.textInput}/>
+               <Button title = "Add" onPress = {printOnConsole} />
+           </View>
+           
+           <View>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  </View>
+       </View>
+
+  );
+  }
+
+  const styles = StyleSheet.create({
+    container : {
+      padding : 50
+    },
+    textInput : {
+      borderWidth : 1,
+      borderColor : 'black'
+    }
+  })
+
+export default App;
