@@ -1,28 +1,45 @@
 import React, { useState } from 'react';
-import { Text, View,TextInput,Button,StyleSheet } from 'react-native';
+import { Text, View,TextInput,Button,StyleSheet,FlatList } from 'react-native';
+
 
 const App = () => {
-  const [setGoal,getGoal] = useState('');
-  const userInput = () => {
-      getGoal(text); 
+ 
+  
+const [goalsItems,variableForHoldingUserText] = useState('');
+const [goalsArray,goalsEmptyArray] = useState([]);
+
+  const getUserInput = (text) => {
+    variableForHoldingUserText(text);
   }
-  const printOnConsole = ""  ;
+
+  const onButtonTouch = () => {
+     goalsEmptyArray(existingGoal =>  [...existingGoal, { key : Math.random, value : goalsItems  }] );
+    };
+  
+  
 
   return (
        <View style = {styles.container} >
            <View>
-               <TextInput onChangeText = {userInput} style = {styles.textInput}/>
-               <Button title = "Add" onPress = {printOnConsole} />
+               <TextInput onChangeText = {getUserInput} style = {styles.textInput}/>
+               <Button title = "Add" onPress={onButtonTouch} />
            </View>
-           
-           <View>
 
-  </View>
+          <FlatList 
+                   style = {styles.listItem} 
+                   keyExtractor = { (item,index) => item.key} 
+                   data = {goalsArray} 
+                   renderItem={itemIterator => (
+                      <View>
+                        <Text>{itemIterator.item.value}</Text>
+                      </View>  
+          )} />
+        
        </View>
 
   );
-  }
-
+  
+          }
   const styles = StyleSheet.create({
     container : {
       padding : 50
@@ -30,6 +47,13 @@ const App = () => {
     textInput : {
       borderWidth : 1,
       borderColor : 'black'
+    },
+    listItem: {
+      padding: 10,
+      marginVertical: 10,
+      backgroundColor: '#ccc',
+      borderColor: 'black',
+      borderWidth: 1
     }
   })
 
