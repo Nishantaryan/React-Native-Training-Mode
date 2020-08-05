@@ -19,18 +19,24 @@ const App = () => {
     UserGoals(currentGoals => [...currentGoals,{key : Math.random().toString() , value : enteredGoal}]) ;
 
   }
+ const  UpdateStateOnDelete = Id => {
+       UserGoals(currentGoals => {
+         return currentGoals.filter((goal) => goal.key !== Id);
+       })   
+ } 
+  
 
 
 
   return (
        <View style = {styles.container}>
          
-          <GoalInput parentClick = {getUserGoals} />
+          <GoalInput parentClick = {getUserGoals}  />
          <View>
             <FlatList keyExtractor= {(item,index) => item.key} 
                       data = {goalsArray}
                       renderItem = {itemIterator => 
-                        <GoalList title = {itemIterator.item.value} />
+                        <GoalList title = {itemIterator.item.value} id = {itemIterator.item.key}  onDelete= {UpdateStateOnDelete}/>
                        }  />
          </View>
        </View>

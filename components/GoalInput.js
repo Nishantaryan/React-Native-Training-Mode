@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View,TextInput,Button,StyleSheet,FlatList } from 'react-native';
+import { Text, View,TextInput,Button,StyleSheet,FlatList, TouchableOpacity } from 'react-native';
 
  
 
@@ -15,13 +15,15 @@ const GoalInput = props => {
       
     
 
-      
+
   
     return(
+       
         <View>
         <TextInput style={styles.inputText} onChangeText = {getUserText} />
         <Button title = "Add" onPress = {props.parentClick.bind(this,setText)} />
       </View>
+    
     ) 
 }
 
