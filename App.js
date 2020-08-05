@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View,TextInput,Button,StyleSheet,FlatList } from 'react-native';
-
+import GoalList from './components/GoalList';
  
 
 const App = () => {
@@ -34,7 +34,8 @@ const App = () => {
             <FlatList keyExtractor= {(item,index) => item.key} 
                       data = {goalsArray}
                       renderItem = {itemIterator => 
-                      <Text style = {styles.listStyle}>{itemIterator.item.value  }</Text> }  />
+                        <GoalList title = {itemIterator.item.value} />
+                       }  />
          </View>
        </View>
 
