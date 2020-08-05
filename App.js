@@ -7,7 +7,7 @@ import GoalInput from './components/GoalInput';
 const App = () => {
  
   const [goalsArray,UserGoals] = useState([]);
-
+  const [isModalOpen,setModalVisibility] = useState(false);
 
 
   
@@ -17,7 +17,8 @@ const App = () => {
   }
   const getUserGoals = enteredGoal => {
     UserGoals(currentGoals => [...currentGoals,{key : Math.random().toString() , value : enteredGoal}]) ;
-
+    setModalVisibility(false);
+    
   }
  const  UpdateStateOnDelete = Id => {
        UserGoals(currentGoals => {
@@ -25,13 +26,19 @@ const App = () => {
        })   
  } 
   
-
-
+ const setModalProperty = () => {
+  setModalVisibility(true);
+ }
+ 
+ const removeModal =  ()  => {
+  setModalVisibility(false);
+}
+ 
 
   return (
        <View style = {styles.container}>
-         
-          <GoalInput parentClick = {getUserGoals}  />
+         <Button title = "Add Goal" onPress={setModalProperty}/>
+          <GoalInput visible = {isModalOpen} parentClick = {getUserGoals} modalClick = {removeModal}  />
          <View>
             <FlatList keyExtractor= {(item,index) => item.key} 
                       data = {goalsArray}
