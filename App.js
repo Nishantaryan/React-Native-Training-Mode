@@ -1,35 +1,31 @@
 import React, { useState } from 'react';
 import { Text, View,TextInput,Button,StyleSheet,FlatList } from 'react-native';
 import GoalList from './components/GoalList';
- 
+import GoalInput from './components/GoalInput';
+
 
 const App = () => {
  
-  const [setText,getText] = useState('');
   const [goalsArray,UserGoals] = useState([]);
-  const getUserText = (text) => {
-    getText(text);
-  }      
 
-  const getUserGoals = () => {
-    UserGoals(currentGoals => [...currentGoals,{key : Math.random().toString() , value : setText}]) ;
 
-  }
-   
+
   
 
   const showUserInput = () => {
     console.log(setText);
   }
-  
-  
+  const getUserGoals = enteredGoal => {
+    UserGoals(currentGoals => [...currentGoals,{key : Math.random().toString() , value : enteredGoal}]) ;
+
+  }
+
+
 
   return (
        <View style = {styles.container}>
-         <View>
-           <TextInput style={styles.inputText} onChangeText = {getUserText} />
-           <Button title = "Add" onPress = {getUserGoals} />
-         </View>
+         
+          <GoalInput parentClick = {getUserGoals} />
          <View>
             <FlatList keyExtractor= {(item,index) => item.key} 
                       data = {goalsArray}
@@ -41,20 +37,14 @@ const App = () => {
 
   );
   
-          }
+          };
  
 const styles = StyleSheet.create({
   container : {
     padding : 20
-  },
-  inputText : {
-     borderWidth : 1
-  },
-  listStyle : {
-    padding : 20,
-    borderWidth : 1,
-     
   }
+  
+ 
 })          
 
 export default App;
